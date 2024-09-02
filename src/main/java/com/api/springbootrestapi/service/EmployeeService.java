@@ -35,8 +35,8 @@ public class EmployeeService {
 		}
 	}
 
-	public ResponseEntity<ResponseStructure<Employee>> fetchById(int id) {
-		Employee employee = repository.findById(id)
+	public ResponseEntity<ResponseStructure<Employee>> fetchById(String id) {
+		Employee employee = repository.findBy_id(id)
 				.orElseThrow(() -> new DataNotFoundException("Data Not Found with Id: " + id));
 		structure.setMessage("Data Found");
 		structure.setData(employee);
@@ -99,11 +99,11 @@ public class EmployeeService {
 		}
 	}
 
-	public ResponseEntity<ResponseStructure<Employee>> deleteById(int id) {
-		Employee employee = repository.findById(id)
-				.orElseThrow(() -> new DataNotFoundException("Data Not Found with Id :" + id));
+	public ResponseEntity<ResponseStructure<Employee>> deleteById(String _id) {
+		Employee employee = repository.findBy_id(_id)
+				.orElseThrow(() -> new DataNotFoundException("Data Not Found with Id :" + _id));
 
-		repository.deleteById(id);
+		repository.deleteBy_id(_id);
 		structure.setMessage("Data Removed");
 		structure.setData(employee);
 		return new ResponseEntity<ResponseStructure<Employee>>(structure, HttpStatus.OK);
@@ -116,8 +116,8 @@ public class EmployeeService {
 		return new ResponseEntity<ResponseStructure<Employee>>(structure, HttpStatus.OK);
 	}
 
-	public ResponseEntity<ResponseStructure<Employee>> updateEmployee(Employee employee, int id) {
-		Employee emp = repository.findById(id).orElseThrow(() -> new DataNotFoundException());
+	public ResponseEntity<ResponseStructure<Employee>> updateEmployee(Employee employee, String _id) {
+		Employee emp = repository.findBy_id(_id).orElseThrow(() -> new DataNotFoundException());
 		if (employee.getName() != null)
 			emp.setName(employee.getName());
 		if (employee.getMobile() != 0)

@@ -1,6 +1,7 @@
 package com.api.springbootrestapi.repository;
 
 import java.util.List;
+import java.util.Optional;
 
 import com.api.springbootrestapi.dto.Employee;
 //import org.springframework.data.jpa.repository.JpaRepository;
@@ -16,5 +17,10 @@ public interface EmployeeRepository extends MongoRepository<Employee, Integer> {
 	List<Employee> findBySalary(double salary);
 
 	Employee findByMobile(long mobile);
+
+	Optional<Employee> findBy_id(String _id);
+
+	void deleteBy_id(String _id);
+
 
 }

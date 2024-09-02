@@ -18,9 +18,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 
 @RestController
+@Tag(name = "SpringBoot MongoDB Rest API Documentation", description = "Employee Rest API")
 @RequestMapping("/api/v1")
+
 public class EmployeeController {
 	@Autowired
 	EmployeeService service;
@@ -33,7 +36,7 @@ public class EmployeeController {
 
 	@Operation(summary = "Fetch One Employee")
 	@GetMapping("/employees/{id}")
-	public ResponseEntity<ResponseStructure<Employee>> fetchEmployeeById(@PathVariable int id) {
+	public ResponseEntity<ResponseStructure<Employee>> fetchEmployeeById(@PathVariable String id) {
 		return service.fetchById(id);
 	}
 
@@ -69,7 +72,7 @@ public class EmployeeController {
 
 	@Operation(summary = "Delete By Id")
 	@DeleteMapping("/employees/{id}")
-	public ResponseEntity<ResponseStructure<Employee>> deleteEmployeeById(@PathVariable int id) {
+	public ResponseEntity<ResponseStructure<Employee>> deleteEmployeeById(@PathVariable String id) {
 		return service.deleteById(id);
 	}
 
@@ -82,7 +85,7 @@ public class EmployeeController {
 	@Operation(summary = "Update - Patch")
 	@PatchMapping("/employees/{id}")
 	public ResponseEntity<ResponseStructure<Employee>> updateEmployee(@RequestBody Employee employee,
-			@PathVariable int id) {
+			@PathVariable String id) {
 		return service.updateEmployee(employee, id);
 	}
 }
