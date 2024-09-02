@@ -21,9 +21,7 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 
 @RestController
-@Tag(name = "SpringBoot MongoDB Rest API Documentation", description = "Employee Rest API")
 @RequestMapping("/api/v1")
-
 public class EmployeeController {
 	@Autowired
 	EmployeeService service;
