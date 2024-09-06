@@ -1,5 +1,6 @@
 package com.api.springbootrestapi.dto;
 
+import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 //import jakarta.persistence.Entity;
@@ -13,6 +14,7 @@ import lombok.Data;
 @Data
 public class Employee {
 	
+	@Id
 	private String _id;
 	private String name;
 	private long mobile;
