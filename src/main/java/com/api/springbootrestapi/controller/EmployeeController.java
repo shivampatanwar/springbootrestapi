@@ -23,15 +23,15 @@ import jakarta.ws.rs.Produces;
 
 
 @RestController
-@CrossOrigin(origins = "*", allowedHeaders = "*")
+@CrossOrigin(origins = "*")
 @RequestMapping("/api/v1")
 public class EmployeeController {
 	@Autowired
 	EmployeeService service;
 
 	@Operation(summary = "Save One Employee",description = "Dont Enter Id Field")
+//	@Produces("application/json")
 	@PostMapping("/employees")
-	@Produces("application/json")
 	public ResponseEntity<ResponseStructure<Employee>> saveEmployee(@RequestBody Employee employee) {
 		return service.save(employee);
 	}
