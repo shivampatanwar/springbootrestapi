@@ -19,6 +19,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import io.swagger.v3.oas.annotations.Operation;
+import jakarta.ws.rs.Consumes;
+import jakarta.ws.rs.Produces;
+
+import org.springframework.http.MediaType;
 
 @RestController
 @CrossOrigin(origins = "*", allowedHeaders = "*")
@@ -28,6 +32,8 @@ public class EmployeeController {
 	EmployeeService service;
 
 	@Operation(summary = "Save One Employee",description = "Dont Enter Id Field")
+	@Produces(MediaType.APPLICATION_JSON_VALUE)
+	@Consumes(MediaType.APPLICATION_JSON_VALUE)
 	@PostMapping("/employees")
 	public ResponseEntity<ResponseStructure<Employee>> saveEmployee(@RequestBody Employee employee) {
 		return service.save(employee);
