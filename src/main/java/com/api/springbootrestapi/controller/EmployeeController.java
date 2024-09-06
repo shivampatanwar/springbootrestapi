@@ -24,14 +24,14 @@ import io.swagger.v3.oas.annotations.Operation;
 
 @RestController
 @CrossOrigin(origins = "*")
-@RequestMapping(path ="/api/v1", consumes = {MediaType.APPLICATION_JSON_VALUE}, produces = {MediaType.APPLICATION_JSON_VALUE})
+@RequestMapping("/api/v1")
 public class EmployeeController {
 	
 	@Autowired
 	EmployeeService service;
 
 	@Operation(summary = "Save One Employee",description = "Dont Enter Id Field")
-	@PostMapping("/employees")
+	@PostMapping(value="/employees", consumes = {MediaType.APPLICATION_JSON_VALUE}, produces = {MediaType.APPLICATION_JSON_VALUE})
 	public ResponseEntity<ResponseStructure<Employee>> saveEmployee(@RequestBody Employee employee) {
 		return service.save(employee);
 	}
@@ -48,7 +48,7 @@ public class EmployeeController {
 		return service.fetchAll();
 	}
 
-	@PostMapping("/employees/many")
+	@PostMapping(value="/employees/many", consumes = {MediaType.APPLICATION_JSON_VALUE}, produces = {MediaType.APPLICATION_JSON_VALUE})
 	@Operation(summary = " Save Employees - Multiple")
 	public ResponseEntity<ResponseStructure<List<Employee>>> saveEmployees(@RequestBody List<Employee> employees) {
 		return service.saveAll(employees);
@@ -79,13 +79,13 @@ public class EmployeeController {
 	}
 
 	@Operation(summary = "Update - PUT")
-	@PutMapping("/employees")
+	@PutMapping(value="/employees", consumes = {MediaType.APPLICATION_JSON_VALUE}, produces = {MediaType.APPLICATION_JSON_VALUE})
 	public ResponseEntity<ResponseStructure<Employee>> updateEMployee(@RequestBody Employee employee) {
 		return service.update(employee);
 	}
 
 	@Operation(summary = "Update - Patch")
-	@PatchMapping("/employees/{id}")
+	@PatchMapping(value="/employees/{id}", consumes = {MediaType.APPLICATION_JSON_VALUE}, produces = {MediaType.APPLICATION_JSON_VALUE})
 	public ResponseEntity<ResponseStructure<Employee>> updateEmployee(@RequestBody Employee employee,
 			@PathVariable String id) {
 		return service.updateEmployee(employee, id);
