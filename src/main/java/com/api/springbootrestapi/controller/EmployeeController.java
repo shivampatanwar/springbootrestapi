@@ -33,7 +33,6 @@ public class EmployeeController {
 
 	@Operation(summary = "Save One Employee",description = "Dont Enter Id Field")
 	@Produces(MediaType.APPLICATION_JSON_VALUE)
-	@Consumes(MediaType.APPLICATION_JSON_VALUE)
 	@PostMapping("/employees")
 	public ResponseEntity<ResponseStructure<Employee>> saveEmployee(@RequestBody Employee employee) {
 		return service.save(employee);
