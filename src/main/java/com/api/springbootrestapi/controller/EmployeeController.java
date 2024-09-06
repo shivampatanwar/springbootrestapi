@@ -6,6 +6,7 @@ import com.api.springbootrestapi.dto.Employee;
 import com.api.springbootrestapi.helper.ResponseStructure;
 import com.api.springbootrestapi.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -23,14 +24,14 @@ import io.swagger.v3.oas.annotations.Operation;
 
 @RestController
 @CrossOrigin(origins = "*")
-@RequestMapping("/api/v1")
+@RequestMapping(path ="/api/v1", consumes = {MediaType.APPLICATION_JSON_VALUE}, produces = {MediaType.APPLICATION_JSON_VALUE})
 public class EmployeeController {
 	
 	@Autowired
 	EmployeeService service;
 
 	@Operation(summary = "Save One Employee",description = "Dont Enter Id Field")
-	@PostMapping(value="/employees", produces="application/json")
+	@PostMapping("/employees")
 	public ResponseEntity<ResponseStructure<Employee>> saveEmployee(@RequestBody Employee employee) {
 		return service.save(employee);
 	}
