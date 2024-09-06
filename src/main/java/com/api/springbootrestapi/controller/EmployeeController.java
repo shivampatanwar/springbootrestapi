@@ -25,11 +25,12 @@ import io.swagger.v3.oas.annotations.Operation;
 @CrossOrigin(origins = "*")
 @RequestMapping("/api/v1")
 public class EmployeeController {
+	
 	@Autowired
 	EmployeeService service;
 
 	@Operation(summary = "Save One Employee",description = "Dont Enter Id Field")
-	@PostMapping("/employees")
+	@PostMapping(value="/employees", produces="application/json")
 	public ResponseEntity<ResponseStructure<Employee>> saveEmployee(@RequestBody Employee employee) {
 		return service.save(employee);
 	}
